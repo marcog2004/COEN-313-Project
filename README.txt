@@ -1,0 +1,13 @@
+The occupancy_tracker.txt file contains the VHDL code for the project as a text file. This code uses the 6-bit input signal max_occupancy to set the maximum amount of people that can be in the room at once. The X digital logic input signal represents somebody entering the room and the Y digital logic input signal represents somebody leaving the room. The code contains a d flip flop with a positive edge clock signal and a reset. The reset forces the max_occupancy back to 0. On a positive edge of the clock, if X is 1 and the current count of people in the room is less than the max_occupancy, the count variable increments by one. Next, if Y is 1 and the count is greater than 0, the count decrements by 1. If the count is equal to the max_occupancy, the Z output signal turns to 1, at all other times it is 0. The circuit considers the possibility that people may be entering and leaving the room at the same time and that if somebody tries to enter when the room is full, it will not let them in (the counter will not increment).
+
+The 40285114_originality_form.pdf is signed by myself, Marco Greco (ID 40285114).
+
+The conceptual_diagram.pdf file represents the occupancy_tracker circuit.
+
+The elaborated_schematic.pdf, implemented_schematic.pdf, runme_implementation.log and runme_synthesis.log are the results of synthesis for the Xilinx Nexys A7 FPGA development board. Synthesis was completed using Xilinx Vivado software.
+
+The simulation_results.pdf and project.do files are the testbench and simulation results.
+
+To execute the code, the contents of the occupancy_tracker.txt file must be copied to a .vhd file, for example, occupancy_tracker.vhd.
+Next, the code must be compiled and simulated. Open the linux terminal and change directory to your Modelsim code folder, then copy the occupancy_tracker.vhd into it. First, enter the following command: source /CMC/ENVIRONMENT/modelsim.env. Next, enter the command: vcom occupancy_tracker.vhd. Next, copy the .do file into the Modelsim code folder and type the following command: vsim -do project.do occupancy_tracker &. This will run the modelsim simulation and display the resulting wavelengths.
+To synthesize the code, open a new terminal and change directory to a wherever the occupancy_tracker.vhd file is stored. Next, open a new terminal and type the following command: source /CMC/tools/xilinx/Vivado_2018.2/Vivado/2018.2/settings64_CMC_central_license.csh. Next, launch Xilinx Vivado by entering the command: vivado &. Create a new RTL project in VHDL and select occupancy_tracker.vhd as the file. Run the synthesis to be able to view the elaborated and implemented designs.
